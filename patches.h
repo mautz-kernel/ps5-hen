@@ -403,10 +403,111 @@ static const std::unordered_map<uint32_t, std::vector<kernel_patch>> fw_patches 
     }},
 
     // FW 2.70
-    {0x0270, {}},
+    {0x0270, {
+        {"sys_getgid",               0x02A67D0, "\x48\xC7\x87\x08\x04\x00\x00\xEE\xFF\xC0\x00\x31\xC0\xC3", 14},
+        {"mmap_self_capability",     0x0580EB0, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"mmap_self_allowed",        0x0580EC0, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"vm_mmap_auth",             0x09A6A59, "\x31\xC0\x90\x90\x90", 5},
+        {"cfi_check_fail",           0x041FCA0, "\xC3", 1},
+        {"kexec_trampoline",         0x0042000, "\xFF\x26", 2},
+        {"sysveri_flag",             0x411CD70, "\x00", 1},
+        {"panic_1",                  0x071E7A0, "\xC3", 1},
+        {"panic_2",                  0x03C7846, "\xEB\xFE", 2},
+        {"panic_3",                  0x071EFF0, "\xC3", 1},
+        {"panic_4",                  0x071F090, "\xC3", 1},
+        {"panic_5",                  0x071F140, "\xC3", 1},
+        {"panic_6",                  0x071F290, "\xC3", 1},
+        {"panic_7",                  0x071F410, "\xC3", 1},
+        {"panic_8",                  0x071F590, "\xC3", 1},
+        {"panic_9",                  0x071F650, "\xC3", 1},
+        {"panic_10",                 0x071F710, "\xC3", 1},
+        {"panic_11",                 0x071F7E0, "\xC3", 1},
+        {"panic_12",                 0x071F8B0, "\xC3", 1},
+        {"panic_13",                 0x071F990, "\xC3", 1},
+        {"panic_14",                 0x071915A, "\xB8\x00\x00\x00\x00", 5},
+        {"panic_15",                 0x0719187, "\xB8\x00\x00\x00\x00", 5},
+    }},
 
-    // FW 3.00 - 3.21
-    {0x0300, {}}, {0x0310, {}}, {0x0320, {}}, {0x0321, {}},
+    // FW 3.00
+    {0x0300, {}},
+
+    // FW 3.10
+    {0x0310, {
+        {"sys_getgid",               0x02BEE90, "\x48\xC7\x87\x08\x04\x00\x00\xEE\xFF\xC0\x00\x31\xC0\xC3", 14},
+        {"mmap_self_capability",     0x05A9B20, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"mmap_self_allowed",        0x05A9B40, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"vm_mmap_auth",             0x09F2DC9, "\x31\xC0\x90\x90\x90", 5},
+        {"cfi_check_fail",           0x0441E10, "\xC3", 1},
+        {"kexec_trampoline",         0x0042000, "\xFF\x26", 2},
+        {"sysveri_flag",             0x0, "\x00", 1},  // TODO
+        {"panic_1",                  0x0625DF0, "\xC3", 1},
+        {"panic_2",                  0x0, "\xEB\xFE", 2},  // TODO
+        {"panic_3",                  0x0, "\xC3", 1},  // TODO
+        {"panic_4",                  0x0, "\xC3", 1},  // TODO
+        {"panic_5",                  0x0, "\xC3", 1},  // TODO
+        {"panic_6",                  0x0, "\xC3", 1},  // TODO
+        {"panic_7",                  0x0, "\xC3", 1},  // TODO
+        {"panic_8",                  0x0, "\xC3", 1},  // TODO
+        {"panic_9",                  0x0, "\xC3", 1},  // TODO
+        {"panic_10",                 0x0, "\xC3", 1},  // TODO
+        {"panic_11",                 0x0, "\xC3", 1},  // TODO
+        {"panic_12",                 0x0, "\xC3", 1},  // TODO
+        {"panic_13",                 0x0, "\xC3", 1},  // TODO
+        {"panic_14",                 0x0, "\xB8\x00\x00\x00\x00", 5},  // TODO
+        {"panic_15",                 0x0, "\xB8\x00\x00\x00\x00", 5},  // TODO
+    }},
+
+    // FW 3.20
+    {0x0320, {
+        {"sys_getgid",               0x02BF1D0, "\x48\xC7\x87\x08\x04\x00\x00\xEE\xFF\xC0\x00\x31\xC0\xC3", 14},
+        {"mmap_self_capability",     0x05A9E70, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"mmap_self_allowed",        0x05A9E90, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"vm_mmap_auth",             0x09F3289, "\x31\xC0\x90\x90\x90", 5},
+        {"cfi_check_fail",           0x0442160, "\xC3", 1},
+        {"kexec_trampoline",         0x0042000, "\xFF\x26", 2},
+        {"sysveri_flag",             0x0, "\x00", 1},  // TODO
+        {"panic_1",                  0x0626140, "\xC3", 1},
+        {"panic_2",                  0x0, "\xEB\xFE", 2},  // TODO
+        {"panic_3",                  0x0, "\xC3", 1},  // TODO
+        {"panic_4",                  0x0, "\xC3", 1},  // TODO
+        {"panic_5",                  0x0, "\xC3", 1},  // TODO
+        {"panic_6",                  0x0, "\xC3", 1},  // TODO
+        {"panic_7",                  0x0, "\xC3", 1},  // TODO
+        {"panic_8",                  0x0, "\xC3", 1},  // TODO
+        {"panic_9",                  0x0, "\xC3", 1},  // TODO
+        {"panic_10",                 0x0, "\xC3", 1},  // TODO
+        {"panic_11",                 0x0, "\xC3", 1},  // TODO
+        {"panic_12",                 0x0, "\xC3", 1},  // TODO
+        {"panic_13",                 0x0, "\xC3", 1},  // TODO
+        {"panic_14",                 0x0, "\xB8\x00\x00\x00\x00", 5},  // TODO
+        {"panic_15",                 0x0, "\xB8\x00\x00\x00\x00", 5},  // TODO
+    }},
+
+    // FW 3.21
+    {0x0321, {
+        {"sys_getgid",               0x02BF1D0, "\x48\xC7\x87\x08\x04\x00\x00\xEE\xFF\xC0\x00\x31\xC0\xC3", 14},
+        {"mmap_self_capability",     0x05A9E70, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"mmap_self_allowed",        0x05A9E90, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"vm_mmap_auth",             0x09F3289, "\x31\xC0\x90\x90\x90", 5},
+        {"cfi_check_fail",           0x0442160, "\xC3", 1},
+        {"kexec_trampoline",         0x0042000, "\xFF\x26", 2},
+        {"sysveri_flag",             0x0, "\x00", 1},  // TODO
+        {"panic_1",                  0x0626140, "\xC3", 1},
+        {"panic_2",                  0x0, "\xEB\xFE", 2},  // TODO
+        {"panic_3",                  0x0, "\xC3", 1},  // TODO
+        {"panic_4",                  0x0, "\xC3", 1},  // TODO
+        {"panic_5",                  0x0, "\xC3", 1},  // TODO
+        {"panic_6",                  0x0, "\xC3", 1},  // TODO
+        {"panic_7",                  0x0, "\xC3", 1},  // TODO
+        {"panic_8",                  0x0, "\xC3", 1},  // TODO
+        {"panic_9",                  0x0, "\xC3", 1},  // TODO
+        {"panic_10",                 0x0, "\xC3", 1},  // TODO
+        {"panic_11",                 0x0, "\xC3", 1},  // TODO
+        {"panic_12",                 0x0, "\xC3", 1},  // TODO
+        {"panic_13",                 0x0, "\xC3", 1},  // TODO
+        {"panic_14",                 0x0, "\xB8\x00\x00\x00\x00", 5},  // TODO
+        {"panic_15",                 0x0, "\xB8\x00\x00\x00\x00", 5},  // TODO
+    }},
 
     // FW 4.00 - 4.02
     {0x0400, {}}, {0x0402, {}},
@@ -437,7 +538,56 @@ static const std::unordered_map<uint32_t, std::vector<kernel_patch>> fw_patches 
         {"panic_15",                 0x077824A, "\xB8\x00\x00\x00\x00", 5},
     }},
 
-    // FW 4.50 - 4.51
-    {0x0450, {}}, {0x0451, {}},
+    // FW 4.50
+    {0x0450, {
+        {"sys_getgid",               0x02D22F0, "\x48\xC7\x87\x08\x04\x00\x00\xEE\xFF\xC0\x00\x31\xC0\xC3", 14},
+        {"mmap_self_capability",     0x05CE990, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"mmap_self_allowed",        0x05CE9B0, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"vm_mmap_auth",             0x0A20E89, "\x31\xC0\x90\x90\x90", 5},
+        {"cfi_check_fail",           0x045A1A0, "\xC3", 1},
+        {"kexec_trampoline",         0x0042000, "\xFF\x26", 2},
+        {"sysveri_flag",             0x0, "\x00", 1},  // TODO
+        {"panic_1",                  0x077DC80, "\xC3", 1},
+        {"panic_2",                  0x03FD361, "\xEB\xFE", 2},
+        {"panic_3",                  0x077E640, "\xC3", 1},
+        {"panic_4",                  0x077E6E0, "\xC3", 1},
+        {"panic_5",                  0x077E790, "\xC3", 1},
+        {"panic_6",                  0x077E8E0, "\xC3", 1},
+        {"panic_7",                  0x077EAB0, "\xC3", 1},
+        {"panic_8",                  0x077EC50, "\xC3", 1},
+        {"panic_9",                  0x077EDF0, "\xC3", 1},
+        {"panic_10",                 0x077EE80, "\xC3", 1},
+        {"panic_11",                 0x077EF40, "\xC3", 1},
+        {"panic_12",                 0x077F000, "\xC3", 1},
+        {"panic_13",                 0x077F0D0, "\xC3", 1},
+        {"panic_14",                 0x077834D, "\xB8\x00\x00\x00\x00", 5},
+        {"panic_15",                 0x077837A, "\xB8\x00\x00\x00\x00", 5},
+    }},
+
+    // FW 4.51
+    {0x0451, {
+        {"sys_getgid",               0x02D22F0, "\x48\xC7\x87\x08\x04\x00\x00\xEE\xFF\xC0\x00\x31\xC0\xC3", 14},
+        {"mmap_self_capability",     0x05CE990, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"mmap_self_allowed",        0x05CE9B0, "\xB8\x01\x00\x00\x00\xC3", 6},
+        {"vm_mmap_auth",             0x0A21229, "\x31\xC0\x90\x90\x90", 5},
+        {"cfi_check_fail",           0x045A1A0, "\xC3", 1},
+        {"kexec_trampoline",         0x0042000, "\xFF\x26", 2},
+        {"sysveri_flag",             0x0, "\x00", 1},  // TODO
+        {"panic_1",                  0x077E020, "\xC3", 1},
+        {"panic_2",                  0x03FD361, "\xEB\xFE", 2},
+        {"panic_3",                  0x077E9E0, "\xC3", 1},
+        {"panic_4",                  0x077EA80, "\xC3", 1},
+        {"panic_5",                  0x077EB30, "\xC3", 1},
+        {"panic_6",                  0x077EC80, "\xC3", 1},
+        {"panic_7",                  0x077EE50, "\xC3", 1},
+        {"panic_8",                  0x077EFF0, "\xC3", 1},
+        {"panic_9",                  0x077F190, "\xC3", 1},
+        {"panic_10",                 0x077F220, "\xC3", 1},
+        {"panic_11",                 0x077F2E0, "\xC3", 1},
+        {"panic_12",                 0x077F3A0, "\xC3", 1},
+        {"panic_13",                 0x077F470, "\xC3", 1},
+        {"panic_14",                 0x07786ED, "\xB8\x00\x00\x00\x00", 5},
+        {"panic_15",                 0x077871A, "\xB8\x00\x00\x00\x00", 5},
+    }},
 };
 

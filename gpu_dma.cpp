@@ -153,7 +153,7 @@ static uint64_t gpu_walk_pt(int vmid, uint64_t gpu_va, uint64_t *out_page_size)
         pte_va = get_dmap_addr(pt_pa) + pte_idx * 8;
         *out_page_size = 0x2000;       // 8KB
     } else {
-        // Unknown fragment size — use 64KB as default
+        // Unknown fragment size - use 64KB as default
         pte_idx = offset >> 16;
         pte_va = get_dmap_addr(pt_pa) + pte_idx * 8;
         *out_page_size = 0x10000;

