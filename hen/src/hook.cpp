@@ -20,6 +20,14 @@
 #include "hooks/2_26.h"
 #include "hooks/2_30.h"
 #include "hooks/2_50.h"
+#include "hooks/3_00.h"
+#include "hooks/3_10.h"
+#include "hooks/3_20.h"
+#include "hooks/3_21.h"
+#include "hooks/4_00.h"
+#include "hooks/4_03.h"
+#include "hooks/4_50.h"
+#include "hooks/4_51.h"
 
 struct hook *find_hook(hook_id id)
 {
@@ -89,6 +97,38 @@ struct hook *find_hook(hook_id id)
     case 0x2700000:
         hooks = (struct hook *) &g_kernel_hooks_250;
         num_hooks = sizeof(g_kernel_hooks_250) / sizeof(struct hook);
+        break;
+    case 0x3000000:
+        hooks = (struct hook *) &g_kernel_hooks_300;
+        num_hooks = sizeof(g_kernel_hooks_300) / sizeof(struct hook);
+        break;
+    case 0x3100000:
+        hooks = (struct hook *) &g_kernel_hooks_310;
+        num_hooks = sizeof(g_kernel_hooks_310) / sizeof(struct hook);
+        break;
+    case 0x3200000:
+        hooks = (struct hook *) &g_kernel_hooks_320;
+        num_hooks = sizeof(g_kernel_hooks_320) / sizeof(struct hook);
+        break;
+    case 0x3210000:
+        hooks = (struct hook *) &g_kernel_hooks_321;
+        num_hooks = sizeof(g_kernel_hooks_321) / sizeof(struct hook);
+        break;
+    case 0x4000000:
+        hooks = (struct hook *) &g_kernel_hooks_400;
+        num_hooks = sizeof(g_kernel_hooks_400) / sizeof(struct hook);
+        break;
+    case 0x4030000:
+        hooks = (struct hook *) &g_kernel_hooks_403;
+        num_hooks = sizeof(g_kernel_hooks_403) / sizeof(struct hook);
+        break;
+    case 0x4500000:
+        hooks = (struct hook *) &g_kernel_hooks_450;
+        num_hooks = sizeof(g_kernel_hooks_450) / sizeof(struct hook);
+        break;
+    case 0x4510000:
+        hooks = (struct hook *) &g_kernel_hooks_451;
+        num_hooks = sizeof(g_kernel_hooks_451) / sizeof(struct hook);
         break;
     default:
         return 0;

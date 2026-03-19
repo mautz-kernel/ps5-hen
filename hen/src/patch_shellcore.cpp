@@ -18,6 +18,14 @@
 #include "shellcore_patches/2_30.h"
 #include "shellcore_patches/2_50.h"
 #include "shellcore_patches/2_70.h"
+#include "shellcore_patches/3_00.h"
+#include "shellcore_patches/3_10.h"
+#include "shellcore_patches/3_20.h"
+#include "shellcore_patches/3_21.h"
+#include "shellcore_patches/4_00.h"
+#include "shellcore_patches/4_03.h"
+#include "shellcore_patches/4_50.h"
+#include "shellcore_patches/4_51.h"
 
 /**
  * @brief Implementation of read/write memory for a process (from kernel)
@@ -219,6 +227,38 @@ void apply_shellcore_patches()
     case 0x2700000:
         patches = (struct patch *) &g_shellcore_patches_270;
         num_patches = sizeof(g_shellcore_patches_270) / sizeof(struct patch);
+        break;
+    case 0x3000000:
+        patches = (struct patch *) &g_shellcore_patches_300;
+        num_patches = sizeof(g_shellcore_patches_300) / sizeof(struct patch);
+        break;
+    case 0x3100000:
+        patches = (struct patch *) &g_shellcore_patches_310;
+        num_patches = sizeof(g_shellcore_patches_310) / sizeof(struct patch);
+        break;
+    case 0x3200000:
+        patches = (struct patch *) &g_shellcore_patches_320;
+        num_patches = sizeof(g_shellcore_patches_320) / sizeof(struct patch);
+        break;
+    case 0x3210000:
+        patches = (struct patch *) &g_shellcore_patches_321;
+        num_patches = sizeof(g_shellcore_patches_321) / sizeof(struct patch);
+        break;
+    case 0x4000000:
+        patches = (struct patch *) &g_shellcore_patches_400;
+        num_patches = sizeof(g_shellcore_patches_400) / sizeof(struct patch);
+        break;
+    case 0x4030000:
+        patches = (struct patch *) &g_shellcore_patches_403;
+        num_patches = sizeof(g_shellcore_patches_403) / sizeof(struct patch);
+        break;
+    case 0x4500000:
+        patches = (struct patch *) &g_shellcore_patches_450;
+        num_patches = sizeof(g_shellcore_patches_450) / sizeof(struct patch);
+        break;
+    case 0x4510000:
+        patches = (struct patch *) &g_shellcore_patches_451;
+        num_patches = sizeof(g_shellcore_patches_451) / sizeof(struct patch);
         break;
     default:
         printf("apply_shellcore_patches: don't have offsets for this firmware\n");

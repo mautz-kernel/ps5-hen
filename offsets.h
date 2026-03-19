@@ -298,10 +298,10 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
 
     // FW 3.00
     {"0300_KDATA_OFFSET",     0x0BD0000},
-    {"0300_OFF_DMPML4I",            0},  // TODO
-    {"0300_OFF_DMPDPI",             0},  // TODO
-    {"0300_OFF_PML4PML4I",          0},  // TODO
-    {"0300_OFF_PMAP_STORE",         0},  // TODO
+    {"0300_OFF_DMPML4I",       0x3D8E4A0},  // untested
+    {"0300_OFF_DMPDPI",        0x3D8E4A4},  // untested
+    {"0300_OFF_PML4PML4I",     0x3D8E1FC},  // untested
+    {"0300_OFF_PMAP_STORE",    0x3D8E218},  // untested
     {"0300_OFF_ALLPROC",      0x333DC58},
     {"0300_KERNEL_TEXT_SIZE",  0x0BD0000},
     {"0300_HV_VCPU",            0x1398},
@@ -309,6 +309,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0300_VMSPACE_VM_VMID",     0x1E4},
     {"0300_VMSPACE_VM_PMAP",     0x1D0},
     {"0300_PMAP_PM_PML4",         0x028},
+    {"0300_PPR_SYSENT",        0x0D3F720},  // untested
     {"0300_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0300_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0300_GADGET_JMP_PTR_RSI",  0x0042000},

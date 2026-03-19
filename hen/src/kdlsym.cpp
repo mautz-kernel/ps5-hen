@@ -17,6 +17,14 @@
 #include "offsets/2_26.h"
 #include "offsets/2_30.h"
 #include "offsets/2_50.h"
+#include "offsets/3_00.h"
+#include "offsets/3_10.h"
+#include "offsets/3_20.h"
+#include "offsets/3_21.h"
+#include "offsets/4_00.h"
+#include "offsets/4_03.h"
+#include "offsets/4_50.h"
+#include "offsets/4_51.h"
 
 uint64_t g_fw_version;
 uint64_t g_kernel_base = 0;
@@ -81,6 +89,22 @@ uint64_t kdlsym(ksym_t sym)
     case 0x2500000:
     case 0x2700000:
         return g_kernel_base + g_sym_map_250[sym];
+    case 0x3000000:
+        return g_kernel_base + g_sym_map_300[sym];
+    case 0x3100000:
+        return g_kernel_base + g_sym_map_310[sym];
+    case 0x3200000:
+        return g_kernel_base + g_sym_map_320[sym];
+    case 0x3210000:
+        return g_kernel_base + g_sym_map_321[sym];
+    case 0x4000000:
+        return g_kernel_base + g_sym_map_400[sym];
+    case 0x4030000:
+        return g_kernel_base + g_sym_map_403[sym];
+    case 0x4500000:
+        return g_kernel_base + g_sym_map_450[sym];
+    case 0x4510000:
+        return g_kernel_base + g_sym_map_451[sym];
     }
 
     return 0;
