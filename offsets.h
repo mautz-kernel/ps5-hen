@@ -298,10 +298,10 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
 
     // FW 3.00
     {"0300_KDATA_OFFSET",     0x0BD0000},
-    {"0300_OFF_DMPML4I",       0x3D8E4A0},  // untested
-    {"0300_OFF_DMPDPI",        0x3D8E4A4},  // untested
-    {"0300_OFF_PML4PML4I",     0x3D8E1FC},  // untested
-    {"0300_OFF_PMAP_STORE",    0x3D8E218},  // untested
+    {"0300_OFF_DMPML4I",       0x3D8E4A0},
+    {"0300_OFF_DMPDPI",        0x3D8E4A4},
+    {"0300_OFF_PML4PML4I",     0x3D8E1FC},
+    {"0300_OFF_PMAP_STORE",    0x3D8E218},
     {"0300_OFF_ALLPROC",      0x333DC58},
     {"0300_KERNEL_TEXT_SIZE",  0x0BD0000},
     {"0300_HV_VCPU",            0x1398},
@@ -310,16 +310,16 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0300_VMSPACE_VM_PMAP",     0x1D0},
     {"0300_PMAP_PM_PML4",         0x028},
     {"0300_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0300_DATA_BASE_GVMSPACE",      0},  // TODO
+    {"0300_DATA_BASE_GVMSPACE",      0},  // TODO - no dump available
     {"0300_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0300_GADGET_JMP_PTR_RSI",  0x0042000},
 
     // FW 3.10
     {"0310_KDATA_OFFSET",     0x0BD0000},
-    {"0310_OFF_DMPML4I",       0x3D8E4A0},  // untested
-    {"0310_OFF_DMPDPI",        0x3D8E4A4},  // untested
-    {"0310_OFF_PML4PML4I",     0x3D8E1FC},  // untested
-    {"0310_OFF_PMAP_STORE",    0x3D8E218},  // untested
+    {"0310_OFF_DMPML4I",       0x3D8E4A0},
+    {"0310_OFF_DMPDPI",        0x3D8E4A4},
+    {"0310_OFF_PML4PML4I",     0x3D8E1FC},
+    {"0310_OFF_PMAP_STORE",    0x3D8E218},
     {"0310_OFF_ALLPROC",      0x333DC58},
     {"0310_KERNEL_TEXT_SIZE",  0x0BD0000},
     {"0310_HV_VCPU",            0x1398},
@@ -328,16 +328,16 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0310_VMSPACE_VM_PMAP",     0x1D0},
     {"0310_PMAP_PM_PML4",         0x028},
     {"0310_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0310_DATA_BASE_GVMSPACE",      0},  // TODO
+    {"0310_DATA_BASE_GVMSPACE",      0},  // TODO - code differs from 3.20
     {"0310_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0310_GADGET_JMP_PTR_RSI",  0x0042000},
 
     // FW 3.20
     {"0320_KDATA_OFFSET",     0x0BD0000},
-    {"0320_OFF_DMPML4I",       0x3D8E4A0},  // untested
-    {"0320_OFF_DMPDPI",        0x3D8E4A4},  // untested
-    {"0320_OFF_PML4PML4I",     0x3D8E1FC},  // untested
-    {"0320_OFF_PMAP_STORE",    0x3D8E218},  // untested
+    {"0320_OFF_DMPML4I",       0x3D8E4A0},
+    {"0320_OFF_DMPDPI",        0x3D8E4A4},
+    {"0320_OFF_PML4PML4I",     0x3D8E1FC},
+    {"0320_OFF_PMAP_STORE",    0x3D8E218},
     {"0320_OFF_ALLPROC",      0x333DC58},
     {"0320_KERNEL_TEXT_SIZE",  0x0BD0000},
     {"0320_HV_VCPU",            0x1398},
@@ -346,16 +346,16 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0320_VMSPACE_VM_PMAP",     0x1D0},
     {"0320_PMAP_PM_PML4",         0x028},
     {"0320_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0320_DATA_BASE_GVMSPACE",      0},  // TODO
+    {"0320_DATA_BASE_GVMSPACE", 0x06423F80},
     {"0320_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0320_GADGET_JMP_PTR_RSI",  0x0042000},
 
     // FW 3.21
     {"0321_KDATA_OFFSET",     0x0BD0000},
-    {"0321_OFF_DMPML4I",       0x3D8E4A0},  // untested
-    {"0321_OFF_DMPDPI",        0x3D8E4A4},  // untested
-    {"0321_OFF_PML4PML4I",     0x3D8E1FC},  // untested
-    {"0321_OFF_PMAP_STORE",    0x3D8E218},  // untested
+    {"0321_OFF_DMPML4I",       0x3D8E4A0},
+    {"0321_OFF_DMPDPI",        0x3D8E4A4},
+    {"0321_OFF_PML4PML4I",     0x3D8E1FC},
+    {"0321_OFF_PMAP_STORE",    0x3D8E218},
     {"0321_OFF_ALLPROC",      0x333DC58},
     {"0321_KERNEL_TEXT_SIZE",  0x0BD0000},
     {"0321_HV_VCPU",            0x1398},
@@ -364,7 +364,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0321_VMSPACE_VM_PMAP",     0x1D0},
     {"0321_PMAP_PM_PML4",         0x028},
     {"0321_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0321_DATA_BASE_GVMSPACE",      0},  // TODO
+    {"0321_DATA_BASE_GVMSPACE",      0},  // TODO - no dump available
     {"0321_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0321_GADGET_JMP_PTR_RSI",  0x0042000},
 
