@@ -4,7 +4,8 @@
 #include <unordered_map>
 #include <format>
 
-// All offsets relative to kernel text (= KERNEL_ADDRESS_DATA_BASE - kernel text size)
+// Some not all offsets are relative to kernel text (= KERNEL_ADDRESS_DATA_BASE - kernel text size)
+// don't ask why I started this - need to make it equal for all ofsets...
 
 static const std::unordered_map<std::string, uint64_t> fw_offsets = {
 
@@ -16,6 +17,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0100_OFF_PMAP_STORE",   0x4ADF2B8},
     {"0100_OFF_ALLPROC",      0x4411BF8},
     {"0100_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0100_BUS_DATA_DEVICES", 0x1D6D478},
     {"0100_HV_VCPU",            0x1398},
     {"0100_HV_VCPU_CPUID",      0x128},
     {"0100_VMSPACE_VM_VMID",     0x1E4},
@@ -34,6 +36,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0101_OFF_PMAP_STORE",   0x4ADF2B8},
     {"0101_OFF_ALLPROC",      0x4411BF8},
     {"0101_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0101_BUS_DATA_DEVICES", 0x1D6D478},
     {"0101_HV_VCPU",            0x1398},
     {"0101_HV_VCPU_CPUID",      0x128},
     {"0101_VMSPACE_VM_VMID",     0x1E4},
@@ -52,6 +55,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0102_OFF_PMAP_STORE",   0x4ADF2B8},
     {"0102_OFF_ALLPROC",      0x4411BF8},
     {"0102_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0102_BUS_DATA_DEVICES", 0x1D6D478},
     {"0102_HV_VCPU",            0x1398},
     {"0102_HV_VCPU_CPUID",      0x128},
     {"0102_VMSPACE_VM_VMID",     0x1E4},
@@ -70,6 +74,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0105_OFF_PMAP_STORE",   0x4ADF328},
     {"0105_OFF_ALLPROC",      0x4411C18},
     {"0105_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0105_BUS_DATA_DEVICES", 0x1D6D478},
     {"0105_HV_VCPU",            0x1398},
     {"0105_HV_VCPU_CPUID",      0x128},
     {"0105_VMSPACE_VM_VMID",     0x1E4},
@@ -88,6 +93,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0110_OFF_PMAP_STORE",   0x4ADF328},
     {"0110_OFF_ALLPROC",      0x4411C18},
     {"0110_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0110_BUS_DATA_DEVICES", 0x1D6D478},
     {"0110_HV_VCPU",            0x1398},
     {"0110_HV_VCPU_CPUID",      0x128},
     {"0110_VMSPACE_VM_VMID",     0x1E4},
@@ -106,6 +112,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0111_OFF_PMAP_STORE",   0x4ADF328},
     {"0111_OFF_ALLPROC",      0x4411C18},
     {"0111_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0111_BUS_DATA_DEVICES", 0x1D6D478},
     {"0111_HV_VCPU",            0x1398},
     {"0111_HV_VCPU_CPUID",      0x128},
     {"0111_VMSPACE_VM_VMID",     0x1E4},
@@ -124,6 +131,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0112_OFF_PMAP_STORE",   0x4ADF328},
     {"0112_OFF_ALLPROC",      0x4411C18},
     {"0112_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0112_BUS_DATA_DEVICES", 0x1D6D478},
     {"0112_HV_VCPU",            0x1398},
     {"0112_HV_VCPU_CPUID",      0x128},
     {"0112_VMSPACE_VM_VMID",     0x1E4},
@@ -142,6 +150,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0113_OFF_PMAP_STORE",   0x4ADF328},
     {"0113_OFF_ALLPROC",      0x4411C18},
     {"0113_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0113_BUS_DATA_DEVICES", 0x1D6D478},
     {"0113_HV_VCPU",            0x1398},
     {"0113_HV_VCPU_CPUID",      0x128},
     {"0113_VMSPACE_VM_VMID",     0x1E4},
@@ -160,6 +169,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0114_OFF_PMAP_STORE",   0x4ADF328},
     {"0114_OFF_ALLPROC",      0x4411C18},
     {"0114_KERNEL_TEXT_SIZE",  0x0B40000},
+    {"0114_BUS_DATA_DEVICES", 0x1D6D478},
     {"0114_HV_VCPU",            0x1398},
     {"0114_HV_VCPU_CPUID",      0x128},
     {"0114_VMSPACE_VM_VMID",     0x1E4},
@@ -178,6 +188,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0200_OFF_PMAP_STORE",   0x4CB38C8},
     {"0200_OFF_ALLPROC",      0x44B1C28},
     {"0200_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0200_BUS_DATA_DEVICES", 0x1D91478},
     {"0200_HV_VCPU",   0x1398},
     {"0200_HV_VCPU_CPUID",      0x128},
     {"0200_VMSPACE_VM_VMID",      0x1E4},
@@ -187,6 +198,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0200_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0200_PPR_SYSENT",              0x1CE6D10},
     {"0200_GADGET_JMP_PTR_RSI",      0x0042000},
+    {"0200_SMP_RENDEZVOUS",          0x9EFD90},
+    // 2.00 uses GPU DMA, no A53 offsets
 
     // FW 2.20
     {"0220_KDATA_OFFSET",      0x1B80000},
@@ -196,6 +209,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0220_OFF_PMAP_STORE",   0x4CB38C8},
     {"0220_OFF_ALLPROC",      0x44B1C28},
     {"0220_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0220_BUS_DATA_DEVICES", 0x1D91478},
     {"0220_HV_VCPU",            0x1398},
     {"0220_HV_VCPU_CPUID",      0x128},
     {"0220_VMSPACE_VM_VMID",     0x1E4},
@@ -214,6 +228,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0225_OFF_PMAP_STORE",   0x4CB38C8},
     {"0225_OFF_ALLPROC",      0x44B1C28},
     {"0225_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0225_BUS_DATA_DEVICES", 0x1D91478},
     {"0225_HV_VCPU",            0x1398},
     {"0225_HV_VCPU_CPUID",      0x128},
     {"0225_VMSPACE_VM_VMID",     0x1E4},
@@ -232,6 +247,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0226_OFF_PMAP_STORE",   0x4CB38C8},
     {"0226_OFF_ALLPROC",      0x44B1C28},
     {"0226_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0226_BUS_DATA_DEVICES", 0x1D91478},
     {"0226_HV_VCPU",            0x1398},
     {"0226_HV_VCPU_CPUID",      0x128},
     {"0226_VMSPACE_VM_VMID",     0x1E4},
@@ -250,6 +266,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0230_OFF_PMAP_STORE",   0x4CB38C8},
     {"0230_OFF_ALLPROC",      0x44B1C28},
     {"0230_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0230_BUS_DATA_DEVICES", 0x1D91478},
     {"0230_HV_VCPU",            0x1398},
     {"0230_HV_VCPU_CPUID",      0x128},
     {"0230_VMSPACE_VM_VMID",     0x1E4},
@@ -268,6 +285,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0250_OFF_PMAP_STORE",   0x4CB38C8},
     {"0250_OFF_ALLPROC",      0x44B1C28},
     {"0250_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0250_BUS_DATA_DEVICES", 0x1D91478},
     {"0250_HV_VCPU",            0x1398},
     {"0250_HV_VCPU_CPUID",      0x128},
     {"0250_VMSPACE_VM_VMID",     0x1E4},
@@ -286,6 +304,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0270_OFF_PMAP_STORE",   0x4CB38C8},
     {"0270_OFF_ALLPROC",      0x44B1C28},
     {"0270_KERNEL_TEXT_SIZE",  0x0B70000},
+    {"0270_BUS_DATA_DEVICES", 0x1D91478},
     {"0270_HV_VCPU",            0x1398},
     {"0270_HV_VCPU_CPUID",      0x128},
     {"0270_VMSPACE_VM_VMID",     0x1E4},
@@ -304,15 +323,20 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0300_OFF_PMAP_STORE",    0x3D8E218},
     {"0300_OFF_ALLPROC",      0x333DC58},
     {"0300_KERNEL_TEXT_SIZE",  0x0BD0000},
-    {"0300_HV_VCPU",            0x1398},
-    {"0300_HV_VCPU_CPUID",      0x128},
+    {"0300_BUS_DATA_DEVICES", 0x1DF1678},
+    {"0300_HV_BSS_OFF",       0x16000},   
+    {"0300_HV_VCPU_ARRAY_OFF", 0x5D0},   // per-core context array within BSS
+    {"0300_HV_VCPU_STRIDE",    0x320},   // per-core context size
+    {"0300_HV_VCPU_VMCB_PTR",  0x08},    // VMCB pointer offset within per-core ctx
     {"0300_VMSPACE_VM_VMID",     0x1E4},
     {"0300_VMSPACE_VM_PMAP",     0x1D0},
     {"0300_PMAP_PM_PML4",         0x028},
     {"0300_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0300_DATA_BASE_GVMSPACE",      0},  // TODO - no dump available
+    {"0300_DATA_BASE_GVMSPACE",      0x06423F80},
     {"0300_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0300_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0300_A53_MDBG_BL_VA",      0x109854},
+    {"0300_A53_GET_VERSION_VA",  0x110854},  // sdbgp_get_version
 
     // FW 3.10
     {"0310_KDATA_OFFSET",     0x0BD0000},
@@ -322,15 +346,20 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0310_OFF_PMAP_STORE",    0x3D8E218},
     {"0310_OFF_ALLPROC",      0x333DC58},
     {"0310_KERNEL_TEXT_SIZE",  0x0BD0000},
-    {"0310_HV_VCPU",            0x1398},
-    {"0310_HV_VCPU_CPUID",      0x128},
+    {"0310_BUS_DATA_DEVICES", 0x1DF1678},
+    {"0310_HV_BSS_OFF",       0x16000}, 
+    {"0310_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0310_HV_VCPU_STRIDE",    0x320},
+    {"0310_HV_VCPU_VMCB_PTR",  0x08},
     {"0310_VMSPACE_VM_VMID",     0x1E4},
     {"0310_VMSPACE_VM_PMAP",     0x1D0},
     {"0310_PMAP_PM_PML4",         0x028},
     {"0310_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0310_DATA_BASE_GVMSPACE",      0},  // TODO - code differs from 3.20
+    {"0310_DATA_BASE_GVMSPACE",      0x06423F80},
     {"0310_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0310_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0310_A53_MDBG_BL_VA",      0x109854},
+    {"0310_A53_GET_VERSION_VA",  0x110854},
 
     // FW 3.20
     {"0320_KDATA_OFFSET",     0x0BD0000},
@@ -340,8 +369,11 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0320_OFF_PMAP_STORE",    0x3D8E218},
     {"0320_OFF_ALLPROC",      0x333DC58},
     {"0320_KERNEL_TEXT_SIZE",  0x0BD0000},
-    {"0320_HV_VCPU",            0x1398},
-    {"0320_HV_VCPU_CPUID",      0x128},
+    {"0320_BUS_DATA_DEVICES", 0x1DF1678},
+    {"0320_HV_BSS_OFF",       0x16000},
+    {"0320_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0320_HV_VCPU_STRIDE",    0x320},
+    {"0320_HV_VCPU_VMCB_PTR",  0x08},
     {"0320_VMSPACE_VM_VMID",     0x1E4},
     {"0320_VMSPACE_VM_PMAP",     0x1D0},
     {"0320_PMAP_PM_PML4",         0x028},
@@ -349,6 +381,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0320_DATA_BASE_GVMSPACE", 0x06423F80},
     {"0320_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0320_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0320_A53_MDBG_BL_VA",      0x109854},
+    {"0320_A53_GET_VERSION_VA",  0x110854},
 
     // FW 3.21
     {"0321_KDATA_OFFSET",     0x0BD0000},
@@ -358,15 +392,20 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0321_OFF_PMAP_STORE",    0x3D8E218},
     {"0321_OFF_ALLPROC",      0x333DC58},
     {"0321_KERNEL_TEXT_SIZE",  0x0BD0000},
-    {"0321_HV_VCPU",            0x1398},
-    {"0321_HV_VCPU_CPUID",      0x128},
+    {"0321_BUS_DATA_DEVICES", 0x1DF1678},
+    {"0321_HV_BSS_OFF",       0x16000},
+    {"0321_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0321_HV_VCPU_STRIDE",    0x320},
+    {"0321_HV_VCPU_VMCB_PTR",  0x08},
     {"0321_VMSPACE_VM_VMID",     0x1E4},
     {"0321_VMSPACE_VM_PMAP",     0x1D0},
     {"0321_PMAP_PM_PML4",         0x028},
     {"0321_PPR_SYSENT",        0x0D3F720},  // untested
-    {"0321_DATA_BASE_GVMSPACE",      0},  // TODO - no dump available
+    {"0321_DATA_BASE_GVMSPACE",      0x06423F80},
     {"0321_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0321_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0321_A53_MDBG_BL_VA",      0x109854},
+    {"0321_A53_GET_VERSION_VA",  0x110854},
 
     // FW 4.00
     {"0400_KDATA_OFFSET",       0x0C00000},
@@ -376,8 +415,11 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0400_OFF_PMAP_STORE",    0x3E57A78},
     {"0400_OFF_ALLPROC",       0x33EDCB8},
     {"0400_KERNEL_TEXT_SIZE",  0x0C00000},
-    {"0400_HV_VCPU",            0x1398},
-    {"0400_HV_VCPU_CPUID",      0x128},
+    {"0400_BUS_DATA_DEVICES", 0x1E69678},
+    {"0400_HV_BSS_OFF",       0x14000},
+    {"0400_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0400_HV_VCPU_STRIDE",    0x320},
+    {"0400_HV_VCPU_VMCB_PTR",  0x08},
     {"0400_VMSPACE_VM_VMID",     0x1E4},
     {"0400_VMSPACE_VM_PMAP",     0x1D0},
     {"0400_PMAP_PM_PML4",         0x028},
@@ -385,6 +427,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0400_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0400_PPR_SYSENT",        0x0D709C0},  // untested
     {"0400_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0400_A53_MDBG_BL_VA",      0x109854},
+    {"0400_A53_GET_VERSION_VA",  0x110288},
 
     // FW 4.02
     {"0402_KDATA_OFFSET",       0x0C00000},
@@ -394,8 +438,11 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0402_OFF_PMAP_STORE",    0x3E57A78},
     {"0402_OFF_ALLPROC",       0x33EDCB8},
     {"0402_KERNEL_TEXT_SIZE",  0x0C00000},
-    {"0402_HV_VCPU",            0x1398},
-    {"0402_HV_VCPU_CPUID",      0x128},
+    {"0402_BUS_DATA_DEVICES", 0x1E69678},
+    {"0402_HV_BSS_OFF",       0x14000},
+    {"0402_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0402_HV_VCPU_STRIDE",    0x320},
+    {"0402_HV_VCPU_VMCB_PTR",  0x08},
     {"0402_VMSPACE_VM_VMID",     0x1E4},
     {"0402_VMSPACE_VM_PMAP",     0x1D0},
     {"0402_PMAP_PM_PML4",         0x028},
@@ -403,6 +450,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0402_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0402_PPR_SYSENT",        0x0D709C0},  // untested
     {"0402_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0402_A53_MDBG_BL_VA",      0x109854},
+    {"0402_A53_GET_VERSION_VA",  0x110288},
 
     // FW 4.03
     {"0403_KDATA_OFFSET",       0x0C00000},
@@ -412,11 +461,16 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0403_OFF_PMAP_STORE",    0x3E57A78},
     {"0403_OFF_ALLPROC",       0x33EDCB8},
     {"0403_KERNEL_TEXT_SIZE",  0x0C00000},
+    {"0403_BUS_DATA_DEVICES", 0x1E69678},
+    {"0403_HV_BSS_OFF",       0x14000},
+    {"0403_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0403_HV_VCPU_STRIDE",    0x320},
+    {"0403_HV_VCPU_VMCB_PTR",  0x08},
     {"0403_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0403_PPR_SYSENT",        0x0D709C0},
     {"0403_GADGET_JMP_PTR_RSI",  0x0042000},
-    {"0403_HV_VCPU",            0x1398},
-    {"0403_HV_VCPU_CPUID",      0x128},
+    {"0403_A53_MDBG_BL_VA",      0x109854},
+    {"0403_A53_GET_VERSION_VA",  0x110288},
     {"0403_VMSPACE_VM_VMID",     0x1E4},
     {"0403_VMSPACE_VM_PMAP",     0x1D0},
     {"0403_PMAP_PM_PML4",         0x028},
@@ -430,8 +484,11 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0450_OFF_PMAP_STORE",    0x3E57A78},
     {"0450_OFF_ALLPROC",       0x33EDCB8},
     {"0450_KERNEL_TEXT_SIZE",  0x0C00000},
-    {"0450_HV_VCPU",            0x1398},
-    {"0450_HV_VCPU_CPUID",      0x128},
+    {"0450_BUS_DATA_DEVICES", 0x1E69678},
+    {"0450_HV_BSS_OFF",       0x14000},
+    {"0450_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0450_HV_VCPU_STRIDE",    0x320},
+    {"0450_HV_VCPU_VMCB_PTR",  0x08},
     {"0450_VMSPACE_VM_VMID",     0x1E4},
     {"0450_VMSPACE_VM_PMAP",     0x1D0},
     {"0450_PMAP_PM_PML4",         0x028},
@@ -439,6 +496,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0450_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0450_PPR_SYSENT",        0x0D709C0},  // untested
     {"0450_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0450_A53_MDBG_BL_VA",      0x109854},
+    {"0450_A53_GET_VERSION_VA",  0x110288},
 
     // FW 4.51
     {"0451_KDATA_OFFSET",       0x0C00000},
@@ -448,8 +507,11 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0451_OFF_PMAP_STORE",    0x3E57A78},
     {"0451_OFF_ALLPROC",       0x33EDCB8},
     {"0451_KERNEL_TEXT_SIZE",  0x0C00000},
-    {"0451_HV_VCPU",            0x1398},
-    {"0451_HV_VCPU_CPUID",      0x128},
+    {"0451_BUS_DATA_DEVICES", 0x1E69678},
+    {"0451_HV_BSS_OFF",       0x14000},
+    {"0451_HV_VCPU_ARRAY_OFF", 0x5D0},
+    {"0451_HV_VCPU_STRIDE",    0x320},
+    {"0451_HV_VCPU_VMCB_PTR",  0x08},
     {"0451_VMSPACE_VM_VMID",     0x1E4},
     {"0451_VMSPACE_VM_PMAP",     0x1D0},
     {"0451_PMAP_PM_PML4",         0x028},
@@ -457,6 +519,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0451_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0451_PPR_SYSENT",        0x0D709C0},  // untested
     {"0451_GADGET_JMP_PTR_RSI",  0x0042000},
+    {"0451_A53_MDBG_BL_VA",      0x109854},
+    {"0451_A53_GET_VERSION_VA",  0x110288},
 };
 
 static inline uint64_t fw_off(uint32_t fw, const char *name) {
