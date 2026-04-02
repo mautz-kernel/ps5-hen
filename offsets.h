@@ -22,7 +22,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0100_HV_VCPU_CPUID",      0x128},
     {"0100_VMSPACE_VM_VMID",     0x1E4},
     {"0100_VMSPACE_VM_PMAP",     0x1D0},
-    {"0100_PMAP_PM_PML4",         0x020},
+    {"0100_PMAP_PM_PML4",        0x020},
+    {"0100_PMAP_PM_CR3",         0x028},
     {"0100_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0100_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0100_PPR_SYSENT",        0x1CAA7B0},
@@ -41,7 +42,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0101_HV_VCPU_CPUID",      0x128},
     {"0101_VMSPACE_VM_VMID",     0x1E4},
     {"0101_VMSPACE_VM_PMAP",     0x1D0},
-    {"0101_PMAP_PM_PML4",         0x020},
+    {"0102_PMAP_PM_PML4",        0x020},
+    {"0102_PMAP_PM_CR3",         0x028},
     {"0101_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0101_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0101_PPR_SYSENT",        0x1CAA7B0},
@@ -60,7 +62,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0102_HV_VCPU_CPUID",      0x128},
     {"0102_VMSPACE_VM_VMID",     0x1E4},
     {"0102_VMSPACE_VM_PMAP",     0x1D0},
-    {"0102_PMAP_PM_PML4",         0x020},
+    {"0102_PMAP_PM_PML4",        0x020},
+    {"0102_PMAP_PM_CR3",         0x028},
     {"0102_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0102_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0102_PPR_SYSENT",        0x1CAA7B0},
@@ -79,7 +82,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0105_HV_VCPU_CPUID",      0x128},
     {"0105_VMSPACE_VM_VMID",     0x1E4},
     {"0105_VMSPACE_VM_PMAP",     0x1D0},
-    {"0105_PMAP_PM_PML4",         0x020},
+    {"0105_PMAP_PM_PML4",        0x020},
+    {"0105_PMAP_PM_CR3",         0x028},
     {"0105_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0105_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0105_PPR_SYSENT",        0x1CAA890},
@@ -98,7 +102,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0110_HV_VCPU_CPUID",      0x128},
     {"0110_VMSPACE_VM_VMID",     0x1E4},
     {"0110_VMSPACE_VM_PMAP",     0x1D0},
-    {"0110_PMAP_PM_PML4",         0x020},
+    {"0110_PMAP_PM_PML4",        0x020},
+    {"0110_PMAP_PM_CR3",         0x028},
     {"0110_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0110_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0110_PPR_SYSENT",        0x1CAA890},
@@ -117,7 +122,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0111_HV_VCPU_CPUID",      0x128},
     {"0111_VMSPACE_VM_VMID",     0x1E4},
     {"0111_VMSPACE_VM_PMAP",     0x1D0},
-    {"0111_PMAP_PM_PML4",         0x020},
+    {"0111_PMAP_PM_PML4",        0x020},
+    {"0111_PMAP_PM_CR3",         0x028},
     {"0111_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0111_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0111_PPR_SYSENT",        0x1CAA890},
@@ -136,7 +142,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0112_HV_VCPU_CPUID",      0x128},
     {"0112_VMSPACE_VM_VMID",     0x1E4},
     {"0112_VMSPACE_VM_PMAP",     0x1D0},
-    {"0112_PMAP_PM_PML4",         0x020},
+    {"0112_PMAP_PM_PML4",        0x020},
+    {"0112_PMAP_PM_CR3",         0x028},
     {"0112_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0112_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0112_PPR_SYSENT",        0x1CAA890},
@@ -155,7 +162,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0113_HV_VCPU_CPUID",      0x128},
     {"0113_VMSPACE_VM_VMID",     0x1E4},
     {"0113_VMSPACE_VM_PMAP",     0x1D0},
-    {"0113_PMAP_PM_PML4",         0x020},
+    {"0113_PMAP_PM_PML4",        0x020},
+    {"0113_PMAP_PM_CR3",         0x028},
     {"0113_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0113_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0113_PPR_SYSENT",        0x1CAA890},
@@ -174,7 +182,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0114_HV_VCPU_CPUID",      0x128},
     {"0114_VMSPACE_VM_VMID",     0x1E4},
     {"0114_VMSPACE_VM_PMAP",     0x1D0},
-    {"0114_PMAP_PM_PML4",         0x020},
+    {"0114_PMAP_PM_PML4",        0x020},
+    {"0114_PMAP_PM_CR3",         0x028},
     {"0114_DATA_BASE_GVMSPACE",      0},  // TODO
     {"0114_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0114_PPR_SYSENT",        0x1CAA890},
@@ -193,7 +202,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0200_HV_VCPU_CPUID",      0x128},
     {"0200_VMSPACE_VM_VMID",      0x1E4},
     {"0200_VMSPACE_VM_PMAP",      0x1D0},
-    {"0200_PMAP_PM_PML4",         0x020},
+    {"0200_PMAP_PM_PML4",        0x020},
+    {"0200_PMAP_PM_CR3",         0x028},
     {"0200_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0200_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0200_PPR_SYSENT",              0x1CE6D10},
@@ -215,6 +225,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0220_VMSPACE_VM_VMID",     0x1E4},
     {"0220_VMSPACE_VM_PMAP",     0x1D0},
     {"0220_PMAP_PM_PML4",        0x020},
+    {"0220_PMAP_PM_CR3",         0x028},
     {"0220_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0220_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0220_PPR_SYSENT",        0x1CE6DD0},
@@ -234,6 +245,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0225_VMSPACE_VM_VMID",     0x1E4},
     {"0225_VMSPACE_VM_PMAP",     0x1D0},
     {"0225_PMAP_PM_PML4",        0x020},
+    {"0225_PMAP_PM_CR3",         0x028},
     {"0225_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0225_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0225_PPR_SYSENT",        0x1CE6DD0},
@@ -253,6 +265,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0226_VMSPACE_VM_VMID",     0x1E4},
     {"0226_VMSPACE_VM_PMAP",     0x1D0},
     {"0226_PMAP_PM_PML4",        0x020},
+    {"0226_PMAP_PM_CR3",         0x028},
     {"0226_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0226_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0226_PPR_SYSENT",        0x1CE6DD0},
@@ -272,6 +285,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0230_VMSPACE_VM_VMID",     0x1E4},
     {"0230_VMSPACE_VM_PMAP",     0x1D0},
     {"0230_PMAP_PM_PML4",        0x020},
+    {"0230_PMAP_PM_CR3",         0x028},
     {"0230_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0230_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0230_PPR_SYSENT",        0x1CE6DE0},
@@ -291,6 +305,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0250_VMSPACE_VM_VMID",     0x1E4},
     {"0250_VMSPACE_VM_PMAP",     0x1D0},
     {"0250_PMAP_PM_PML4",        0x020},
+    {"0250_PMAP_PM_CR3",         0x028},
     {"0250_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0250_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0250_PPR_SYSENT",        0x1CE6E00},
@@ -310,6 +325,7 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0270_VMSPACE_VM_VMID",     0x1E4},
     {"0270_VMSPACE_VM_PMAP",     0x1D0},
     {"0270_PMAP_PM_PML4",        0x020},
+    {"0270_PMAP_PM_CR3",         0x028},
     {"0270_DATA_BASE_GVMSPACE", 0x063A2EB0},
     {"0270_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0270_PPR_SYSENT",        0x1CE6E00},  // untested
@@ -330,7 +346,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0300_HV_VCPU_VMCB_PTR",  0x08},    // VMCB pointer offset within per-core ctx
     {"0300_VMSPACE_VM_VMID",     0x1E4},
     {"0300_VMSPACE_VM_PMAP",     0x1D0},
-    {"0300_PMAP_PM_PML4",         0x028},
+    {"0300_PMAP_PM_PML4",        0x020},
+    {"0300_PMAP_PM_CR3",         0x028},
     {"0300_PPR_SYSENT",        0x0D3F720},  // untested
     {"0300_DATA_BASE_GVMSPACE",      0x06423F80},
     {"0300_KERNEL_OFF_CODE_CAVE",    0x0044000},
@@ -353,7 +370,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0310_HV_VCPU_VMCB_PTR",  0x08},
     {"0310_VMSPACE_VM_VMID",     0x1E4},
     {"0310_VMSPACE_VM_PMAP",     0x1D0},
-    {"0310_PMAP_PM_PML4",         0x028},
+    {"0310_PMAP_PM_PML4",        0x020},
+    {"0310_PMAP_PM_CR3",         0x028},
     {"0310_PPR_SYSENT",        0x0D3F720},  // untested
     {"0310_DATA_BASE_GVMSPACE",      0x06423F80},
     {"0310_KERNEL_OFF_CODE_CAVE",    0x0044000},
@@ -376,7 +394,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0320_HV_VCPU_VMCB_PTR",  0x08},
     {"0320_VMSPACE_VM_VMID",     0x1E4},
     {"0320_VMSPACE_VM_PMAP",     0x1D0},
-    {"0320_PMAP_PM_PML4",         0x028},
+    {"0320_PMAP_PM_PML4",        0x020},
+    {"0320_PMAP_PM_CR3",         0x028},
     {"0320_PPR_SYSENT",        0x0D3F720},  // untested
     {"0320_DATA_BASE_GVMSPACE", 0x06423F80},
     {"0320_KERNEL_OFF_CODE_CAVE",    0x0044000},
@@ -399,7 +418,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0321_HV_VCPU_VMCB_PTR",  0x08},
     {"0321_VMSPACE_VM_VMID",     0x1E4},
     {"0321_VMSPACE_VM_PMAP",     0x1D0},
-    {"0321_PMAP_PM_PML4",         0x028},
+    {"0321_PMAP_PM_PML4",        0x020},
+    {"0321_PMAP_PM_CR3",         0x028},
     {"0321_PPR_SYSENT",        0x0D3F720},  // untested
     {"0321_DATA_BASE_GVMSPACE",      0x06423F80},
     {"0321_KERNEL_OFF_CODE_CAVE",    0x0044000},
@@ -422,7 +442,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0400_HV_VCPU_VMCB_PTR",  0x08},
     {"0400_VMSPACE_VM_VMID",     0x1E4},
     {"0400_VMSPACE_VM_PMAP",     0x1D0},
-    {"0400_PMAP_PM_PML4",         0x028},
+    {"0400_PMAP_PM_PML4",        0x020},
+    {"0400_PMAP_PM_CR3",         0x028},
     {"0400_DATA_BASE_GVMSPACE", 0x064C3F80},
     {"0400_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0400_PPR_SYSENT",        0x0D709C0},  // untested
@@ -445,7 +466,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0402_HV_VCPU_VMCB_PTR",  0x08},
     {"0402_VMSPACE_VM_VMID",     0x1E4},
     {"0402_VMSPACE_VM_PMAP",     0x1D0},
-    {"0402_PMAP_PM_PML4",         0x028},
+    {"0402_PMAP_PM_PML4",        0x020},
+    {"0402_PMAP_PM_CR3",         0x028},
     {"0402_DATA_BASE_GVMSPACE", 0x064C3F80},
     {"0402_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0402_PPR_SYSENT",        0x0D709C0},  // untested
@@ -473,7 +495,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0403_A53_GET_VERSION_VA",  0x110288},
     {"0403_VMSPACE_VM_VMID",     0x1E4},
     {"0403_VMSPACE_VM_PMAP",     0x1D0},
-    {"0403_PMAP_PM_PML4",         0x028},
+    {"0403_PMAP_PM_PML4",        0x020},
+    {"0403_PMAP_PM_CR3",         0x028}, // The PML4 offset in PMAP store is wrong. PML4 == CR3 + DMAP
     {"0403_DATA_BASE_GVMSPACE", 0x064C3F80},
 
     // FW 4.50
@@ -491,7 +514,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0450_HV_VCPU_VMCB_PTR",  0x08},
     {"0450_VMSPACE_VM_VMID",     0x1E4},
     {"0450_VMSPACE_VM_PMAP",     0x1D0},
-    {"0450_PMAP_PM_PML4",         0x028},
+    {"0450_PMAP_PM_PML4",        0x020},
+    {"0450_PMAP_PM_CR3",         0x028},
     {"0450_DATA_BASE_GVMSPACE", 0x064C3F80},
     {"0450_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0450_PPR_SYSENT",        0x0D709C0},  // untested
@@ -514,7 +538,8 @@ static const std::unordered_map<std::string, uint64_t> fw_offsets = {
     {"0451_HV_VCPU_VMCB_PTR",  0x08},
     {"0451_VMSPACE_VM_VMID",     0x1E4},
     {"0451_VMSPACE_VM_PMAP",     0x1D0},
-    {"0451_PMAP_PM_PML4",         0x028},
+    {"0451_PMAP_PM_PML4",        0x020},
+    {"0451_PMAP_PM_CR3",         0x028},
     {"0451_DATA_BASE_GVMSPACE", 0x064C3F80},
     {"0451_KERNEL_OFF_CODE_CAVE",    0x0044000},
     {"0451_PPR_SYSENT",        0x0D709C0},  // untested

