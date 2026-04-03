@@ -11,6 +11,7 @@ Defeats the Hypervisor on firmware <= 4.51 and enables supports for homebrew and
 - [fail0verflow](https://github.com/fail0verflow)
 - [flat_z](https://github.com/flatz)
 - [c0w](https://github.com/c0w-ar)
+- [TheOfficialFloW](https://github.com/theofficialflow)
 - [EchoStretch](https://github.com/EchoStretch)
 - [idlesauce](https://github.com/idlesauce)
 - [Z80](https://github.com/0x90h)
