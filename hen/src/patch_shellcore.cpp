@@ -80,7 +80,7 @@ int proc_rw_mem(void *p, off_t procAddr, size_t sz, void *kAddr, size_t *ioSz, i
     _uio.uio_resid = sz;
     _uio.uio_segflg = UIO_SYSSPACE;
     _uio.uio_rw = (write) ? UIO_WRITE : UIO_READ;
-    _uio.uio_td = curthread;
+    _uio.uio_td = (struct thread *)curthread;
 
     // Read/Write memory (ignoring faults)
     int ret = debug_rwmem(p, &_uio);

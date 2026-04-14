@@ -1,10 +1,18 @@
 PS5_HOST ?= ps5
 PS5_PORT ?= 9021
 
+ifdef PS5_PAYLOAD_SDK
+    include $(PS5_PAYLOAD_SDK)/toolchain/prospero.mk
+else
+    $(error PS5_PAYLOAD_SDK is undefined)
+endif
+
 ELF := hen.elf
 BIN := hen.bin
 
 CFLAGS := -std=c++11 -Wall -Werror -D_KERNEL -I./include -O2 -fno-builtin -nostartfiles -nostdlib -fno-stack-protector -fno-plt -fPIC -Wno-error=frame-address
+CFLAGS += -Wno-unused-command-line-argument
+
 #SFLAGS := -nostartfiles -nostdlib -fPIC
 LFLAGS := -Xlinker -T ./link.x -Wl,--build-id=none
 
@@ -16,8 +24,8 @@ OBJS        := $(patsubst $(SDIR)/%.cpp, $(ODIR)/%.o, $(CXXFILES)) $(patsubst $(
 
 $(ELF): $(ODIR) $(OBJS)
 	$(CXX) $(ODIR)/*.o -o $(ELF) $(CFLAGS) $(LFLAGS)
-	objcopy -O binary $(ELF) $(BIN)
-	strip $@
+	$(OBJCOPY) -O binary $(ELF) $(BIN)
+	$(STRIP) $@
 
 $(ODIR)/%.o: $(SDIR)/%.cpp
 	$(CXX) -c -o $@ $< $(CFLAGS)
